@@ -5,9 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
-use Tymon\JWTAuth\Middleware\GetUserFromToken;
+//use Tymon\JWTAuth\Middleware\GetUserFromToken;
+use Tymon\JWTAuth\Middleware\BaseMiddleware;
 
-class JwtMiddleware extends GetUserFromToken
+class JwtMiddleware extends BaseMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +17,7 @@ class JwtMiddleware extends GetUserFromToken
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $permission)
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
@@ -28,6 +29,14 @@ class JwtMiddleware extends GetUserFromToken
             }else{
                 return response()->json(['status' => 'Authorization token not found']);
             }
+        }
+        $permissions = is_array($permission) ? $permission : explode('|', $permission);
+        foreach ($permissions as $permission) {
+            if ($user->hasAccess($permission)) {
+                $this->events->fire('tymon.jwt.valid', $user);
+                return $next($request);
+            }
+            return response()->json(['success' => false, 'message' => 'You are don\'t permission']);
         }
         return $next($request);
     }

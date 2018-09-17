@@ -156,7 +156,7 @@ return [
         */
 
         'auth' => function ($app) {
-            return new \App\Services\Repositories\Auth\SentinelAuthAdapter($app['auth']);
+            return new \App\Services\Repositories\Eloquent\SentinelAuthAdapter($app['auth']);
         },
 
         /*

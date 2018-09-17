@@ -28,11 +28,21 @@ Route::group(['namespace' => 'ApiController', 'middleware' => 'api'], function()
 
     });
 
-    Route::group(['prefix' => 'user', 'middleware' => 'jwt.auth'], function() {
+    Route::group(['prefix' => 'user', 'middleware' => 'jwt.verify:users.index|users.create'], function() {
+
+        Route::get('/list', [
+            'as' => 'api.list.user',
+            'uses' => 'UsersController@getListUsers'
+        ]);
 
         Route::get('/profile', [
             'as' => 'api.profile.user',
             'uses' => 'UsersController@getProfileUser'
+        ]);
+
+        Route::post('/store', [
+            'as' => 'api.user.store',
+            'uses' => 'UsersController@store'
         ]);
 
     });

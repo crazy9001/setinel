@@ -3,10 +3,10 @@
  * Created by PhpStorm.
  * User: PC01
  * Date: 9/17/2018
- * Time: 4:56 PM
+ * Time: 7:26 PM
  */
 
-namespace App\Services\Repositories\Auth;
+namespace App\Services\Repositories\Eloquent;
 
 use Exception;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;

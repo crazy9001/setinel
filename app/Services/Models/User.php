@@ -20,6 +20,7 @@ class User extends EloquentUser
         'password',
         'full_name',
         'permissions',
+        'phone'
     ];
     protected $loginNames = ['username'];
 }
