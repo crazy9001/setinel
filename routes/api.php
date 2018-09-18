@@ -28,7 +28,9 @@ Route::group(['namespace' => 'ApiController', 'middleware' => 'api'], function()
 
     });
 
-    Route::group(['prefix' => 'user', 'middleware' => 'jwt.verify:users.index|users.create'], function() {
+    // route user
+
+    Route::group(['prefix' => 'user', 'middleware' => ['jwt.verify:users.index|users.create', 'api']], function() {
 
         Route::get('/list', [
             'as' => 'api.list.user',
@@ -43,6 +45,17 @@ Route::group(['namespace' => 'ApiController', 'middleware' => 'api'], function()
         Route::post('/store', [
             'as' => 'api.user.store',
             'uses' => 'UsersController@store'
+        ]);
+
+    });
+
+    // route category
+
+    Route::group(['prefix' => 'categories', 'middleware' => ['jwt.verify:categories.index|categories.create', 'api']], function() {
+
+        Route::post('/store', [
+            'as' => 'api.categories.store',
+            'uses' => 'CategoriesController@store'
         ]);
 
     });

@@ -19,13 +19,24 @@ return [
                 'permission'    =>  'users.store',
                 'label' =>  'Thêm mới user'
             ]
+        ],
+        'Quản lí chuyên mục'    =>  [
+            [
+                'permission'    =>  'categories.index',
+                'label' =>  'Danh sách chuyên mục'
+            ],
+            [
+                'permission'    =>  'categories.store',
+                'label' =>  'Thêm mới chuyên mục'
+            ]
         ]
     ],
 
     'Default Roles Permission'  =>  [
 
         'Secretary' =>  [
-            'Quản lí users'
+            'Quản lí users',
+            'Quản lí chuyên mục'
         ],
         'Editor'    =>  [
 

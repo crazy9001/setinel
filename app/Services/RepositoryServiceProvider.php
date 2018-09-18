@@ -11,6 +11,7 @@ namespace App\Services;
 use App\Services\Providers\HelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Providers\UsersServiceProvider;
+use App\Services\Providers\CategoryServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->register(HelperServiceProvider::class);
         $this->app->register(UsersServiceProvider::class);
+        $this->app->register(CategoryServiceProvider::class);
     }
 
     /**
