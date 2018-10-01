@@ -36,14 +36,14 @@ class AuthenticateController extends BaseController
         try {
             // attempt to verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
-                return $this->sendError('Error', 'invalid_credentials', 401);
+                return response()->json(['success'=> false, 'error'=> 'Invalid credentials'], 401);
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
-            return $this->sendError('Error', 'could_not_create_token', 500);
+            return response()->json(['success' => false, 'error' => 'Failed to login, please try again.'], 500);
         }
         // all good so return the token
-        return $this->sendResponse(compact('token') , 'Success');
+        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
     }
 
 

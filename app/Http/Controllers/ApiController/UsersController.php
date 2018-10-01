@@ -57,7 +57,7 @@ class UsersController extends BaseController
     public function getListUsers()
     {
         $users = $this->userRepository->all();
-        return $this->sendResponse($users, 'Success');
+        return $this->sendResponse($users);
     }
 
 }

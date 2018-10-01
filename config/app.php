@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
         App\Services\RepositoryServiceProvider::class,
     ],
 
